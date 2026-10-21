@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kapel St. Yakobus Zebedeus | Pudak Payung</title>
+<style>
+:root{
+  --gold:#b58a3b;
+  --gold-light:#f5eedc;
+  --gold-dark:#8c651f;
+  --brown:#493626;
+  --cream:#faf8f3;
+  --text:#342f29;
+  --muted:#746d64;
+  --line:#e8e1d6;
+  --green:#397451;
+  --green-bg:#eaf4ed;
+  --shadow:0 6px 20px rgba(66,48,28,.06);
+  --shadow-hover:0 10px 28px rgba(66,48,28,.12);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--text);font:16px/1.65 Arial,Helvetica,sans-serif}
+button,input,select,textarea{font:inherit}
+button,a{cursor:pointer}
+a{color:inherit;text-decoration:none}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #d8b96e;outline-offset:3px}
+
+/* Announcement Bar */
+.alert-bar{background:#7c2d12;color:#fff;padding:8px 16px;font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:10px;text-align:center}
+.alert-bar a{color:#fde68a;text-decoration:underline;cursor:pointer}
+.alert-badge{background:#ea580c;color:#fff;padding:2px 8px;border-radius:20px;font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+
+/* Header & Nav */
+header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.header-inner{max-width:1180px;margin:auto;padding:12px 22px;display:flex;align-items:center;gap:14px;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.logo{width:52px;height:52px;flex-shrink:0}
+.brand-title{font:bold 19px/1.2 Georgia,serif;color:var(--brown)}
+.brand-sub{font-size:12px;color:var(--muted);margin-top:3px}
+nav{display:flex;gap:4px;align-items:center}
+nav > div{position:relative}
+.nav-link{border:0;background:transparent;padding:9px 12px;border-radius:8px;color:var(--brown);font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:4px}
+.nav-link:hover,.nav-link.active{background:var(--gold-light);color:var(--gold-dark)}
+.nav-arrow{font-size:10px;transition:transform .2s}
+
+/* Dropdown */
+.dropdown-menu{display:none;position:absolute;top:100%;left:0;background:#fff;border:1px solid var(--line);border-radius:10px;min-width:200px;box-shadow:var(--shadow-hover);padding:6px;z-index:30}
+.dropdown-menu a{display:block;padding:9px 14px;font-size:13px;font-weight:600;color:var(--brown);border-radius:6px}
+.dropdown-menu a:hover{background:var(--gold-light);color:var(--gold-dark)}
+.dropdown:hover .dropdown-menu,.dropdown:focus-within .dropdown-menu{display:block}
+
+.hamburger{display:none;background:#fff;border:1px solid var(--line);border-radius:8px;padding:7px 12px;color:var(--brown);font-size:22px}
+
+/* Layout & Main */
+main{max-width:1180px;margin:auto;padding:28px 22px 60px;min-height:72vh}
+.page{display:none}
+.page.active{display:block}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif;color:var(--brown);line-height:1.3}
+h1{font-size:clamp(28px,3.5vw,42px);margin:0 0 15px}
+h2{font-size:24px;margin:0 0 14px}
+h3{font-size:19px;margin:0 0 8px}
+p{margin:0 0 14px}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+.eyebrow{font-size:12px;letter-spacing:1.8px;text-transform:uppercase;font-weight:bold;color:var(--gold);margin-bottom:8px}
+
+/* Hero */
+.hero{background:linear-gradient(120deg,#f4ead5,#fffdf8 65%,#e8d6b2);border:1px solid #eadcc3;border-radius:18px;padding:clamp(25px,4vw,50px);display:grid;grid-template-columns:1.5fr .8fr;gap:26px;align-items:center}
+.hero p{max-width:620px}
+.hero-art{display:flex;justify-content:center;align-items:center}
+.hero-art svg{width:min(100%,230px);height:auto}
+
+/* Liturgical Banner Info */
+.liturgy-ribbon{display:inline-flex;align-items:center;gap:8px;background:#e9f4eb;border:1px solid #c7e3cb;color:#1c592b;padding:6px 14px;border-radius:30px;font-size:13px;font-weight:bold;margin-bottom:14px}
+.liturgy-dot{width:10px;height:10px;border-radius:50%;background:#2e7d32;display:inline-block}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid var(--gold);background:var(--gold);color:white;border-radius:9px;padding:10px 16px;font-weight:bold;font-size:14px}
+.btn:hover{filter:brightness(.94)}
+.btn.secondary{background:white;color:var(--brown);border-color:var(--line)}
+.btn.small-btn{padding:7px 12px;font-size:13px}
+.btn-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:15px;margin:32px 0 15px}
+.section-head h2{margin:0}
+
+/* Cards */
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow);min-width:0;transition:box-shadow .2s}
+.card:hover{box-shadow:var(--shadow-hover)}
+.card p:last-child{margin-bottom:0}
+.card-action{cursor:pointer;transition:transform .15s,border-color .15s,box-shadow .2s}
+.card-action:hover{transform:translateY(-3px);border-color:var(--gold)}
+
+/* Compact Date Badge Event Card */
+.event-card{display:flex;gap:16px;align-items:flex-start}
+.date-badge{flex-shrink:0;width:58px;height:62px;background:var(--gold-light);border:1px solid #ebd7af;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--brown)}
+.date-badge .day{font-size:22px;font-weight:bold;line-height:1;font-family:Georgia,serif}
+.date-badge .month{font-size:10px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;color:var(--gold-dark);margin-top:2px}
+
+.icon-box{width:42px;height:42px;display:grid;place-items:center;background:var(--gold-light);border-radius:10px;color:var(--brown);font-size:20px;flex-shrink:0}
+.badge{display:inline-block;border-radius:30px;padding:3px 10px;font-size:12px;font-weight:bold;background:#eee9df;color:var(--brown);margin:2px 4px 2px 0}
+.status-upcoming{background:#fdf2d9;color:#854d0e}
+.status-done{background:#dcfce7;color:#166534}
+.field-liturgi{background:#f3e8ff;color:#6b21a8}
+.field-pewartaan{background:#e0f2fe;color:#0369a1}
+.field-kemasyarakatan{background:#ffedd5;color:#c2410c}
+.field-paguyuban{background:#ccfbf1;color:#0f766e}
+.field-rumahtangga{background:#fce7f3;color:#9d174d}
+
+/* Filters & Forms */
+.filters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;padding:18px;background:#fff;border:1px solid var(--line);border-radius:12px;margin:18px 0}
+label{display:block;font-size:13px;font-weight:bold;color:var(--brown);margin-bottom:6px}
+input,select,textarea{width:100%;padding:10px 12px;border:1px solid #d8d0c3;border-radius:8px;background:#fff;color:var(--text);min-width:0}
+textarea{min-height:90px;resize:vertical}
+.field{margin-bottom:14px}
+
+/* Tables */
+table{width:100%;border-collapse:collapse;background:#fff}
+th,td{text-align:left;padding:13px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#f4ece0;color:var(--brown);font-size:13px}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:11px}
+.notice{padding:14px 17px;border-left:4px solid var(--gold);background:#f5eddd;border-radius:6px;margin:15px 0}
+
+/* Map Frame */
+.map-container{position:relative;width:100%;height:320px;border-radius:13px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow)}
+.map-container iframe{width:100%;height:100%;border:0}
+
+/* Tabs */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
+.tab{padding:9px 16px;border:1px solid var(--line);background:#fff;color:var(--brown);border-radius:8px;font-weight:bold;transition:all .15s}
+.tab.active{background:var(--brown);color:#fff;border-color:var(--brown)}
+
+/* Gallery Grid */
+.gallery-card-thumb{height:165px;border-radius:10px;background:#f0e6d2;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center}
+.gallery-card-thumb svg{width:100%;height:100%;object-fit:cover}
+
+/* Stats */
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:18px 0}
+.stat-number{font:bold 32px Georgia,serif;color:var(--brown)}
+.chart-box{background:#fff;border:1px solid var(--line);border-radius:13px;padding:20px}
+
+/* Floating WhatsApp Button */
+.fab-wa{position:fixed;bottom:24px;right:24px;background:#25d366;color:#fff;border-radius:50px;padding:12px 20px;display:flex;align-items:center;gap:10px;font-weight:bold;font-size:14px;box-shadow:0 6px 20px rgba(37,211,102,.35);z-index:40;transition:transform .2s,box-shadow .2s}
+.fab-wa:hover{transform:translateY(-3px);box-shadow:0 10px 25px rgba(37,211,102,.45);color:#fff}
+.fab-wa svg{width:22px;height:22px;fill:currentColor}
+
+/* Footer & Modal */
+footer{background:#463426;color:#f9f3e8;padding:32px 22px}
+.footer-inner{max-width:1180px;margin:auto;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+footer p{margin:0;font-size:13px}
+footer .muted{color:#dfd1bc}
+.modal{position:fixed;inset:0;z-index:50;background:#21180fb5;display:none;align-items:center;justify-content:center;padding:18px}
+.modal.open{display:flex}
+.modal-panel{background:#fff;border-radius:16px;padding:26px;width:min(100%,600px);max-height:90vh;overflow:auto;box-shadow:0 15px 50px rgba(0,0,0,.25)}
+.modal-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.close{border:0;background:#f2eee7;border-radius:8px;padding:5px 12px;font-size:22px}
+.backlink{display:inline-flex;align-items:center;gap:6px;margin-bottom:18px;color:var(--brown);font-weight:bold}
+.empty{padding:30px;text-align:center;background:white;border:1px dashed var(--line);border-radius:10px;color:var(--muted)}
+hr{border:0;border-top:1px solid var(--line);margin:18px 0}
+.hidden{display:none!important}
+
+/* Responsive */
+@media(max-width:980px){
+  .header-inner{flex-wrap:wrap}
+  .hamburger{display:block}
+  nav{display:none;width:100%;flex-direction:column;align-items:stretch;padding:10px 0;max-height:70vh;overflow-y:auto}
+  nav.open{display:flex}
+  .dropdown-menu{position:static;box-shadow:none;border:none;padding-left:14px;background:#faf6ed}
+  .hero{grid-template-columns:1fr;padding:26px 20px}
+  .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stat-grid{grid-template-columns:1fr}
+}
+@media(max-width:620px){
+  .cards{grid-template-columns:1fr}
+  .filters{grid-template-columns:1fr}
+  .fab-wa span{display:none}
+  .fab-wa{padding:13px;border-radius:50%}
+  .section-head{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<!-- Alert Bar Pengumuman Darurat / Terkini -->
+<aside class="alert-bar" role="alert">
+  <span class="alert-badge">Warta Terkini</span>
+  <span>Jadwal Misa Hari Raya dan Pengumuman Petugas Liturgi Bulan Ini telah diperbarui.</span>
+  <a onclick="go('jadwal')">Cek Jadwal &rarr;</a>
+</aside>
+
+<header>
+  <div class="header-inner">
+    <a href="#" class="brand" onclick="go('beranda');return false" aria-label="Beranda Kapel">
+      <svg class="logo" viewBox="0 0 100 100" role="img" aria-label="Logo Kapel"><circle cx="50" cy="50" r="47" fill="#f8f0df" stroke="#b58a3b" stroke-width="3"/><circle cx="50" cy="50" r="39" fill="none" stroke="#d8bd7e" stroke-width="1.5"/><path d="M50 19 L50 54 M39 31 L61 31 M41 54 L59 54" stroke="#795638" stroke-width="5" stroke-linecap="round" fill="none"/><circle cx="50" cy="18" r="7" fill="#b58a3b"/><path d="M32 75 Q50 57 68 75 L64 81 L36 81 Z" fill="#b58a3b"/><path d="M50 60 L50 77 M38 66 L62 66 M42 61 L58 73 M58 61 L42 73" stroke="#fff9ec" stroke-width="1.5" fill="none"/></svg>
+      <div>
+        <div class="brand-title">Kapel St. Yakobus Zebedeus</div>
+        <div class="brand-sub">Pudak Payung · Paroki Kristus Raja Ungaran</div>
+      </div>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Buka menu navigasi" onclick="toggleMenu()">☰</button>
+    <nav id="nav" aria-label="Navigasi utama">
+      <button class="nav-link active" data-page="beranda" onclick="go('beranda')">Beranda</button>
+      
+      <div class="dropdown">
+        <button class="nav-link" aria-haspopup="true">Tentang Kami <span class="nav-arrow">▼</span></button>
+        <div class="dropdown-menu">
+          <a onclick="go('profil')">Profil & Sejarah</a>
+          <a onclick="go('wilayah')">Wilayah & Lingkungan</a>
+          <a onclick="go('statistik')">Statistik Umat</a>
+        </div>
+      </div>
+
+      <button class="nav-link" data-page="jadwal" onclick="go('jadwal')">Liturgi & Jadwal</button>
+
+      <div class="dropdown">
+        <button class="nav-link" aria-haspopup="true">Kabar & Program <span class="nav-arrow">▼</span></button>
+        <div class="dropdown-menu">
+          <a onclick="go('program')">Program Pelayanan</a>
+          <a onclick="go('berita')">Warta & Pengumuman</a>
+          <a onclick="go('galeri')">Galeri Dokumentasi</a>
+        </div>
+      </div>
+
+      <button class="nav-link" data-page="layanan" onclick="go('layanan')">Layanan Umat</button>
+      <button class="nav-link" data-page="kontak" onclick="go('kontak')">Kontak & Lokasi</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- BERANDA -->
+  <section id="beranda" class="page active">
+    <div class="hero">
+      <div>
+        <div class="liturgy-ribbon">
+          <span class="liturgy-dot"></span>
+          <span>Minggu Biasa XXIX · Warna Liturgi Hijau</span>
+        </div>
+        <div class="eyebrow">Selamat Datang</div>
+        <h1>Berjalan Bersama dalam Iman dan Kasih</h1>
+        <p>Komunitas iman Katolik di wilayah Pudak Payung, bersekutu dalam perayaan Ekaristi, menguatkan persaudaraan lingkungan, dan melayani sesama.</p>
+        <div class="btn-row">
+          <button class="btn" onclick="go('jadwal')">Lihat Jadwal Misa &rarr;</button>
+          <button class="btn secondary" onclick="openForm('Intensi Misa')">Daftar Ujud / Intensi Misa</button>
+        </div>
+      </div>
+      <div class="hero-art">
+        <svg viewBox="0 0 240 240" role="img" aria-label="Salib dan Kerang Peziarah Yakobus"><circle cx="120" cy="120" r="105" fill="#ead8b3"/><circle cx="120" cy="120" r="83" fill="#f8f0df" stroke="#c5a35f" stroke-width="2"/><path d="M120 49 V153 M82 83 H158" stroke="#795638" stroke-width="10" stroke-linecap="round"/><path d="M74 179 Q120 137 166 179 L158 194 H82 Z" fill="#b58a3b"/><path d="M120 148 V187 M88 165 L152 165 M98 151 L142 182 M142 151 L98 182" stroke="#fff6e5" stroke-width="2" fill="none"/><circle cx="120" cy="36" r="5" fill="#b58a3b"/></svg>
+      </div>
+    </div>
+
+    <!-- Jadwal Misa Segera -->
+    <div class="section-head">
+      <h2>Jadwal Perayaan Ekaristi Terdekat</h2>
+      <button class="btn secondary small-btn" onclick="go('jadwal')">Jadwal lengkap</button>
+    </div>
+    <div class="cards" id="home-mass"></div>
+
+    <!-- Berita Terkini -->
+    <div class="section-head">
+      <h2>Warta & Pengumuman Terbaru</h2>
+      <button class="btn secondary small-btn" onclick="go('berita')">Lihat semua warta</button>
+    </div>
+    <div id="home-news" class="cards"></div>
+
+    <!-- Program Mendatang -->
+    <div class="section-head">
+      <h2>Agenda & Program Mendatang</h2>
+      <button class="btn secondary small-btn" onclick="go('program')">Semua program</button>
+    </div>
+    <div class="cards" id="home-programs"></div>
+  </section>
+
+  <!-- PROFIL -->
+  <section id="profil" class="page">
+    <div class="eyebrow">Mengenal Kapel</div>
+    <h1>Profil St. Yakobus Zebedeus</h1>
+    <div class="cards">
+      <article class="card" style="grid-column:span 2">
+        <h2>Sejarah Singkat & Peziarahan</h2>
+        <p>Kapel St. Yakobus Zebedeus bertempat di wilayah Pudak Payung, Semarang, sebagai pusat kegiatan liturgi dan perjumpaan pastoral bagi Wilayah 7 dan Wilayah 8 di bawah reksa pastoral Gereja Paroki Kristus Raja Ungaran.</p>
+        <p>Mengambil nama pelindung Santo Yakobus Zebedeus—rasul dan saksi kebangkitan Kristus—komunitas ini terus bertumbuh dari persekutuan doa rumahtangga menjadi kapel yang aktif dalam pelayanan sosial dan kemasyarakatan.</p>
+      </article>
+      <article class="card">
+        <div class="icon-box">✝</div>
+        <h3>Visi Komunitas</h3>
+        <p>Menjadi paguyuban murid Kristus yang beriman teguh, bersaudara tulus, dan berbelarasa bagi masyarakat sekitar.</p>
+      </article>
+      <article class="card">
+        <div class="icon-box">♡</div>
+        <h3>Misi Pelayanan</h3>
+        <p>1. Menghayati liturgi yang hidup dan khidmat.<br>2. Menguatkan iman keluarga dan kaum muda.<br>3. Menghadirkan kasih nyata lewat aksi kemasyarakatan.</p>
+      </article>
+      <article class="card" style="grid-column:span 2">
+        <div class="icon-box">♙</div>
+        <h3>Pengurus Dewan Stasi / Kapel (Periode Berjalan)</h3>
+        <p><strong>Ketua Dewan Kapel:</strong> F.X. Bambang Sulistyo<br>
+        <strong>Wakil Ketua:</strong> Maria Theresia Sri Rejeki<br>
+        <strong>Sekretaris:</strong> Antonius Dwi Nugroho<br>
+        <strong>Bendahara:</strong> Elisabeth Wahyu Utami</p>
+        <p class="muted small">Data kepengurusan disahkan oleh Dewan Pastoral Paroki Kristus Raja Ungaran.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- JADWAL & LITURGI -->
+  <section id="jadwal" class="page">
+    <div class="eyebrow">Perayaan Iman</div>
+    <h1>Jadwal Misa & Perayaan Liturgi</h1>
+    
+    <div class="notice">
+      <strong>Catatan Petugas:</strong> Bagi petugas koor, lektor, dan prodiakon dimohon hadir 30 menit sebelum perayaan dimulai untuk koordinasi singkat di sakristi.
+    </div>
+
+    <div class="section-head"><h2>Jadwal Misa Rutin</h2></div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Perayaan</th><th>Hari</th><th>Waktu</th><th>Tempat & Keterangan</th><th>Aksi</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Misa Mingguan</strong></td><td>Minggu</td><td>07.30 WIB</td><td>Kapel St. Yakobus (Bhs. Indonesia)</td>
+            <td><button class="btn small-btn" onclick="openForm('Intensi Misa')">Daftar Ujud</button></td>
+          </tr>
+          <tr>
+            <td><strong>Misa Vigili Minggu</strong></td><td>Sabtu</td><td>19.00 WIB</td><td>Kapel St. Yakobus</td>
+            <td><button class="btn small-btn" onclick="openForm('Intensi Misa')">Daftar Ujud</button></td>
+          </tr>
+          <tr>
+            <td><strong>Misa Harian</strong></td><td>Selasa & Kamis</td><td>05.30 WIB</td><td>Kapel St. Yakobus (Pagi)</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td><strong>Misa Jumat Pertama</strong></td><td>Jumat Pekan I</td><td>19.00 WIB</td><td>Ibadat Adorasi & Misa Kudus</td>
+            <td><button class="btn small-btn" onclick="openForm('Intensi Misa')">Daftar Ujud</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-head"><h2>Kalender & Kegiatan Liturgi Bulan Ini</h2></div>
+    <div class="cards" id="monthly-events"></div>
+  </section>
+
+  <!-- PROGRAM -->
+  <section id="program" class="page">
+    <div class="eyebrow">Karya & Pelayanan Umat</div>
+    <h1>Program & Kegiatan Kapel</h1>
+    <p>Filter agenda pastoral berdasarkan bidang karya, status pelaksanaan, atau wilayah.</p>
+
+    <div class="filters">
+      <div>
+        <label for="filter-field">Bidang Pelayanan</label>
+        <select id="filter-field" onchange="renderPrograms()">
+          <option>Semua</option>
+          <option>Liturgi</option>
+          <option>Pewartaan dan Evangelisasi</option>
+          <option>Pelayanan Kemasyarakatan</option>
+          <option>Paguyuban dan Persaudaraan</option>
+          <option>Rumah Tangga</option>
+        </select>
+      </div>
+      <div>
+        <label for="filter-status">Status Pelaksanaan</label>
+        <select id="filter-status" onchange="renderPrograms()">
+          <option>Semua</option>
+          <option>Akan Berjalan</option>
+          <option>Sudah Berjalan</option>
+        </select>
+      </div>
+      <div>
+        <label for="filter-area">Wilayah Lingkup</label>
+        <select id="filter-area" onchange="renderPrograms()">
+          <option>Semua</option>
+          <option>Wilayah 7</option>
+          <option>Wilayah 8</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="program-count" class="muted small"></div>
+    <div class="cards" id="program-list" style="margin-top:14px"></div>
+    <div id="program-detail" class="hidden"></div>
+  </section>
+
+  <!-- BERITA -->
+  <section id="berita" class="page">
+    <div class="eyebrow">Warta Stasi</div>
+    <h1>Berita & Pengumuman</h1>
+    <div class="tabs" role="tablist">
+      <button class="tab active" role="tab" aria-selected="true" onclick="newsTab('terbaru',this)">Warta Terbaru</button>
+      <button class="tab" role="tab" aria-selected="false" onclick="newsTab('arsip',this)">Arsip Warta</button>
+    </div>
+    <div id="news-latest" class="cards"></div>
+    <div id="news-archive" class="hidden">
+      <div class="filters">
+        <div>
+          <label for="news-year">Tahun</label>
+          <select id="news-year" onchange="renderArchive()">
+            <option value="Semua">Semua tahun</option>
+            <option>2026</option>
+            <option>2025</option>
+            <option>2024</option>
+          </select>
+        </div>
+        <div>
+          <label for="news-month">Bulan</label>
+          <select id="news-month" onchange="renderArchive()">
+            <option value="Semua">Semua bulan</option>
+            <option value="01">Januari</option><option value="02">Februari</option><option value="03">Maret</option>
+            <option value="04">April</option><option value="05">Mei</option><option value="06">Juni</option>
+            <option value="07">Juli</option><option value="08">Agustus</option><option value="09">September</option>
+            <option value="10">Oktober</option><option value="11">November</option><option value="12">Desember</option>
+          </select>
+        </div>
+      </div>
+      <div class="cards" id="archive-list"></div>
+    </div>
+  </section>
+
+  <!-- GALERI DOKUMENTASI -->
+  <section id="galeri" class="page">
+    <div class="eyebrow">Dokumentasi Umat</div>
+    <h1>Galeri Momen Bersama</h1>
+    <p class="muted">Dokumentasi sukacita perjumpaan dan pelayanan di Kapel St. Yakobus Zebedeus.</p>
+    <div class="cards" id="gallery-list" style="margin-top:20px"></div>
+  </section>
+
+  <!-- STATISTIK (INTERNAL/TRANSPARANSI) -->
+  <section id="statistik" class="page">
+    <div class="eyebrow">Transparansi Data Pastoral</div>
+    <h1>Statistik Kehadiran Umat</h1>
+    <p class="muted">Data agregat statistik kehadiran umat dalam perayaan Ekaristi mingguan dan hari raya.</p>
+
+    <div class="filters" style="margin:20px 0">
+      <div><label for="date-from">Mulai Tanggal</label><input type="date" id="date-from" onchange="renderChart()"></div>
+      <div><label for="date-to">Sampai Tanggal</label><input type="date" id="date-to" onchange="renderChart()"></div>
+      <div><label for="event-filter">Filter Perayaan</label><select id="event-filter" onchange="renderChart()"><option>Semua</option><option>Paskah</option><option>Natal</option><option>Pesta Nama</option></select></div>
+      <div style="align-self:end"><button class="btn secondary" type="button" onclick="resetStatDates()">30 Hari Terakhir</button></div>
+    </div>
+
+    <div class="stat-grid">
+      <div class="card"><div class="muted small">Total Periode</div><div class="stat-number" id="stat-total">—</div><div class="small muted">Orang</div></div>
+      <div class="card"><div class="muted small">Rata-rata Mingguan</div><div class="stat-number" id="stat-average">—</div><div class="small muted">Umat per perayaan</div></div>
+      <div class="card"><div class="muted small">Data Terakhir</div><div class="stat-number" id="stat-last">—</div><div class="small muted">Kehadiran fisik</div></div>
+    </div>
+
+    <div class="chart-box">
+      <h3 id="chart-title">Grafik Kehadiran Mingguan</h3>
+      <canvas id="attendance-chart" aria-label="Grafik kehadiran umat" role="img"></canvas>
+    </div>
+  </section>
+
+  <!-- WILAYAH & LINGKUNGAN -->
+  <section id="wilayah" class="page">
+    <div class="eyebrow">Gereja yang Mengakar</div>
+    <h1>Wilayah & Lingkungan</h1>
+    <p>Kapel menaungi 11 komunitas lingkungan basis yang terbagi ke dalam Wilayah 7 dan Wilayah 8.</p>
+    <div id="area-list" class="cards" style="margin-top:20px"></div>
+    <div id="environment-detail" class="hidden"></div>
+  </section>
+
+  <!-- LAYANAN UMAT -->
+  <section id="layanan" class="page">
+    <div class="eyebrow">Pelayanan Kasih</div>
+    <h1>Layanan Umat & Sakramen</h1>
+    <p>Silakan gunakan formulir terpadu untuk keperluan ujud doa, bantuan sosial stasi, pendaftaran katekumen/kegiatan, atau saran.</p>
+
+    <div class="cards" style="margin-top:22px">
+      <article class="card">
+        <div class="icon-box">🕯</div>
+        <h3>Intensi & Ujud Misa</h3>
+        <p>Daftarkan ujud doa syukur, arwah, atau intensi khusus untuk dimasukkan ke dalam intensi Misa Kudus mingguan.</p>
+        <button class="btn" onclick="openForm('Intensi Misa')">Daftar Ujud Misa</button>
+      </article>
+
+      <article class="card">
+        <div class="icon-box">✍</div>
+        <h3>Pendaftaran Pastoral</h3>
+        <p>Pendaftaran katekumenat, komuni pertama, penerimaan krisma, atau pendaftaran kegiatan komunitas.</p>
+        <button class="btn secondary" onclick="openForm('Pendaftaran Kegiatan')">Buka Formulir</button>
+      </article>
+
+      <article class="card">
+        <div class="icon-box">♡</div>
+        <h3>Pelayanan Bantuan Sosial</h3>
+        <p>Kanal peduli kasih bagi umat atau warga yang membutuhkan pendampingan logistik dan kesehatan darurat.</p>
+        <button class="btn secondary" onclick="openForm('Pengajuan Bantuan Sosial')">Ajukan Bantuan</button>
+      </article>
+
+      <article class="card">
+        <div class="icon-box">✉</div>
+        <h3>Kotak Saran & Aspirasi</h3>
+        <p>Masukan konstruktif untuk pengembangan liturgi, fasilitas kapel, dan kegiatan paguyuban bersama.</p>
+        <button class="btn secondary" onclick="openForm('Kotak Saran')">Tulis Masukan</button>
+      </article>
+    </div>
+  </section>
+
+  <!-- KONTAK & PETA INTERAKTIF -->
+  <section id="kontak" class="page">
+    <div class="eyebrow">Terhubung dengan Kami</div>
+    <h1>Kontak & Lokasi Kapel</h1>
+    <p>Sekretariat Kapel siap menyambut kehadiran dan pertanyaan umat.</p>
+
+    <div class="cards" style="margin-top:20px;margin-bottom:28px">
+      <article class="card">
+        <div class="icon-box">⌖</div>
+        <h3>Alamat Fisik</h3>
+        <p><strong>Kapel St. Yakobus Zebedeus</strong><br>Pudak Payung, Kec. Banyumanik, Kota Semarang, Jawa Tengah 50265</p>
+        <a href="https://maps.google.com/?q=Pudak+Payung+Semarang" target="_blank" rel="noopener" class="btn secondary small-btn" style="margin-top:10px">Buka di Aplikasi Maps ↗</a>
+      </article>
+      <article class="card">
+        <div class="icon-box">📱</div>
+        <h3>WhatsApp Sekretariat</h3>
+        <p>Layanan pesan cepat untuk administrasi dan tanya jawab pastoral:<br><strong>+62 812-3456-7890</strong></p>
+        <a href="https://wa.me/6281234567890" target="_blank" rel="noopener" class="btn small-btn" style="margin-top:10px;background:#25d366;border-color:#25d366">Hubungi via WA</a>
+      </article>
+      <article class="card">
+        <div class="icon-box">✉</div>
+        <h3>Komunikasi Digital</h3>
+        <p>Email: <strong>sekretariat@kapelyz.or.id</strong><br>Instagram: <strong>@kapelstyakobus</strong><br>YouTube: <strong>Kapel St Yakobus Pudak Payung</strong></p>
+      </article>
+    </div>
+
+    <div class="section-head">
+      <h2>Peta Lokasi Kapel</h2>
+      <a href="https://maps.google.com/?q=Pudak+Payung+Semarang" target="_blank" rel="noopener" class="btn secondary small-btn">Perbesar Peta ↗</a>
+    </div>
+    <div class="map-container">
+      <iframe title="Lokasi Google Maps Kapel Pudak Payung" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15838.232386187747!2d110.407!3d-7.094!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7089456e3b5e47%3A0x6b63d91cf34f59e!2sPudakpayung%2C%20Banyumanik%2C%20Semarang%20City%2C%20Central%20Java!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </section>
+</main>
+
+<!-- FLOATING WHATSAPP BUTTON -->
+<a href="https://wa.me/6281234567890?text=Halo%20Sekretariat%20Kapel%20St.%20Yakobus%20Zebedeus,%20saya%20ingin%20bertanya" target="_blank" rel="noopener" class="fab-wa" aria-label="Chat WhatsApp Sekretariat">
+  <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm.01 1.67c2.2 0 4.26.86 5.82 2.41a8.16 8.16 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24zm4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.98-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.4-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.12-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.12.17 1.77 2.7 4.28 3.79.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.17-.47-.3z"/></svg>
+  <span>Hubungi Sekretariat</span>
+</a>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <strong>Kapel St. Yakobus Zebedeus</strong>
+      <p class="muted">Pudak Payung · Paroki Kristus Raja Ungaran</p>
+      <p class="small muted" style="margin-top:6px">Keuskupan Agung Semarang</p>
+    </div>
+    <div>
+      <p>© <span id="year"></span> kapelyz.or.id</p>
+      <p class="muted">Website Resmi Kapel & Komunitas Basis Katolik Pudak Payung.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL FORM INTERAKTIF -->
+<div class="modal" id="form-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" onclick="if(event.target===this)closeForm()">
+  <div class="modal-panel">
+    <div class="modal-head">
+      <h2 id="modal-title">Formulir Layanan</h2>
+      <button class="close" onclick="closeForm()" aria-label="Tutup">×</button>
+    </div>
+    <p class="muted small" id="modal-description">Silakan isi data formulir di bawah ini.</p>
+    
+    <form id="mock-form" onsubmit="handleFormSubmit(event)">
+      <div id="form-fields"></div>
+      <div class="btn-row">
+        <button type="submit" class="btn">Kirim Permohonan</button>
+        <button type="button" class="btn secondary" onclick="closeForm()">Batal</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+// Data Store
+const programs = [
+  {id:1, title:'Misa Kudus & Pelayanan Liturgi', field:'Liturgi', date:'2026-10-25', time:'07.30', place:'Kapel St. Yakobus Zebedeus', area:'Wilayah 7', env:'Lingkungan 1', lead:'Tim Liturgi', status:'Akan Berjalan', desc:'Perayaan Ekaristi bersama serta perutusan petugas liturgi. Umat diharapkan hadir 15 menit sebelum perayaan.'},
+  {id:2, title:'Pendalaman Kitab Suci & Doa', field:'Pewartaan dan Evangelisasi', date:'2026-10-24', time:'19.00', place:'Rumah Umat, Lingkungan 2', area:'Wilayah 7', env:'Lingkungan 2', lead:'Tim Pewartaan', status:'Akan Berjalan',desc:'Pertemuan pendalaman iman mingguan mengupas sabda Injil Minggu dan refleksi dalam dinamika keluarga.'},
+  {id:3, title:'Bakti Sosial Peduli Sesama', field:'Pelayanan Kemasyarakatan', date:'2026-09-20', time:'08.00', place:'Balai Warga Pudak Payung', area:'Wilayah 7', env:'Lingkungan 3', lead:'Tim Pelayanan Sosial', status:'Sudah Berjalan', desc:'Pemberian paket sembako dan pemeriksaan kesehatan gratis bagi lansia dan warga sekitar.'},
+  {id:4, title:'Temu Guyub Persaudaraan Umat', field:'Paguyuban dan Persaudaraan', date:'2026-11-08', time:'10.00', place:'Halaman Kapel', area:'Wilayah 8', env:'Lingkungan 7', lead:'Tim Paguyuban', status:'Akan Berjalan', desc:'Pentas seni BIA/BIR, ramah tamah lintas lingkungan, dan bazar usaha kecil umat.'},
+  {id:5, title:'Pendampingan Keluarga Kristiani', field:'Rumah Tangga', date:'2026-08-16', time:'16.00', place:'Gedung Serbaguna Kapel', area:'Wilayah 7', env:'Lingkungan 5', lead:'Tim Pendamping Keluarga', status:'Sudah Berjalan', desc:'Sarasehan penguatan spiritualitas pasutri dalam mendampingi anak-anak di era digital.'},
+  {id:6, title:'Latihan Rutin Koor Gabungan', field:'Liturgi', date:'2026-10-22', time:'19.00', place:'Kapel St. Yakobus', area:'Wilayah 8', env:'Lingkungan 8', lead:'Koordinator Koor St. Yakobus', status:'Akan Berjalan', desc:'Persiapan lagu ordinarium dan lagu pujian perayaan Ekaristi hari Minggu.'},
+  {id:7, title:'Doa Rosario Lingkungan Bersama', field:'Pewartaan dan Evangelisasi', date:'2026-10-15', time:'19.00', place:'Rumah Bpk. FX Sutrisno', area:'Wilayah 7', env:'Lingkungan 4', lead:'Pengurus Lingkungan 4', status:'Sudah Berjalan', desc:'Perjumpaan doa rosario bersama di bulan Maria untuk intensi kapel dan perdamaian dunia.'},
+  {id:8, title:'Kunjungan Kasih Umat Sakit & Lansia', field:'Pelayanan Kemasyarakatan', date:'2026-11-15', time:'09.00', place:'Wilayah 8', area:'Wilayah 8', env:'Lingkungan 10', lead:'Tim Kunjungan Kasih', status:'Akan Berjalan', desc:'Pemberian komuni orang sakit oleh prodiakon dan silaturahmi penghiburan bagi lansia.'}
+];
+
+const news = [
+  {title:'Jadwal Petugas Liturgi dan Paduan Suara Bulan Oktober-November', date:'2026-10-20', valid:'2026-11-15', body:'Bagi para koordinator seksi liturgi dan paduan suara lingkungan, dimohon memeriksa pembagian tugas misa Sabtu sore dan Minggu pagi pada lembar warta.'},
+  {title:'Pendaftaran Ujud Misa Arwah Peringatan Semua Orang Beriman (2 November)', date:'2026-10-18', valid:'2026-11-02', body:'Formulir ujud doa arwah telah dibuka di sekretariat maupun via online pada menu Layanan Umat paling lambat 30 Oktober.'},
+  {title:'Pertemuan Dewan Kapel Bersama Pengurus Lingkungan Wilayah 7 & 8', date:'2026-10-10', valid:'2026-10-28', body:'Koordinasi evaluasi program karya sosial dan rancangan kegiatan menyambut masa Adven 2026 di aula kapel.'},
+  {title:'Laporan Bakti Sosial & Posko Kesehatan Masyarakat', date:'2026-09-22', valid:'2026-10-10', body:'Terima kasih kepada seluruh donatur dan relawan. Baksos telah menyalurkan 150 paket sembako kepada warga dhuafa di Pudak Payung.'},
+  {title:'Pembukaan Kelas Katekumen Dewasa Baptis Paskah', date:'2025-09-05', valid:'2025-10-01', body:'Bagi simpatisan yang ingin mengenal iman Katolik, pendaftaran katekumenat telah dibuka di sekretariat.'},
+  {title:'Semarak Pesta Nama St. Yakobus Zebedeus', date:'2024-07-26', valid:'2024-08-01', body:'Rangkaian perayaan novena dan misa syukur pesta pelindung stasi telah berlangsung dengan penuh sukacita.'}
+];
+
+const envs = [
+  ...Array.from({length:6},(_,i)=>({name:`Lingkungan ${i+1}`, area:'Wilayah 7', head:`Bpk/Ibu Ketua Lingkungan ${i+1}`, day:['Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'][i], time:'19.00'})),
+  ...Array.from({length:5},(_,i)=>({name:`Lingkungan ${i+7}`, area:'Wilayah 8', head:`Bpk/Ibu Ketua Lingkungan ${i+7}`, day:['Senin','Rabu','Kamis','Jumat','Sabtu'][i], time:'19.00'}))
+];
+
+const monthly = [
+  {date:'2026-10-22', title:'Latihan Koor Gabungan', place:'Kapel St. Yakobus', time:'19.00 WIB'},
+  {date:'2026-10-24', title:'Pendalaman Kitab Suci', place:'Rumah Umat Lingk. 2', time:'19.00 WIB'},
+  {date:'2026-10-25', title:'Misa Kudus Hari Minggu', place:'Kapel St. Yakobus', time:'07.30 WIB'},
+  {date:'2026-11-02', title:'Misa Hari Arwah', place:'Kapel St. Yakobus', time:'18.30 WIB'},
+  {date:'2026-11-08', title:'Temu Guyub Antar Lingkungan', place:'Halaman Kapel', time:'10.00 WIB'}
+];
+
+const albums = [
+  {title:'Perayaan Ekaristi Hari Minggu', desc:'Suasana khidmat ibadat bersama umat Pudak Payung', tag:'Liturgi', icon:'✝'},
+  {title:'Ziarah & Doa Rosario Lingkungan', desc:'Kegiatan doa mempererat paguyuban umat basis', tag:'Pewartaan', icon:'🌹'},
+  {title:'Aksi Nyata Belarasa Sembako', desc:'Penyaluran bantuan kemasyarakatan di Pudak Payung', tag:'Sosial', icon:'♡'},
+  {title:'Pendalaman Sabda & Rekoleksi', desc:'Pemberdayaan iman bersama bapak, ibu, dan kaum muda', tag:'Iman', icon:'📖'},
+  {title:'Keceriaan Bina Iman Remaja (BIR)', desc:'Pertemuan persaudaraan anak-anak dan generasi penerus', tag:'Paguyuban', icon:'♧'},
+  {title:'Misa Syukur Pesta Pelindung Kapel', desc:'Momen sakral peringatan Santo Yakobus Zebedeus', tag:'Pesta Nama', icon:'🕊'}
+];
+
+// Utility Helpers
+const el = id => document.getElementById(id);
+const escapeHTML = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmtDate = s => {
+  const d = new Date(s + 'T12:00:00');
+  return d.toLocaleDateString('id-ID', {day:'numeric', month:'long', year:'numeric'});
+};
+const getDayNum = s => s.split('-')[2];
+const getMonthShort = s => {
+  const months = ['JAN','FEB','MAR','APR','MEI','JUN','JUL','AGU','SEP','OKT','NOV','DES'];
+  return months[parseInt(s.split('-')[1], 10) - 1];
+};
+const fieldClass = f => ({
+  'Liturgi':'field-liturgi',
+  'Pewartaan dan Evangelisasi':'field-pewartaan',
+  'Pelayanan Kemasyarakatan':'field-kemasyarakatan',
+  'Paguyuban dan Persaudaraan':'field-paguyuban',
+  'Rumah Tangga':'field-rumahtangga'
+}[f] || '');
+const statusClass = s => s === 'Akan Berjalan' ? 'status-upcoming' : 'status-done';
+
+// Navigation & Routing via Hash
+function go(pageId, pushHash = true) {
+  const pages = document.querySelectorAll('.page');
+  const target = el(pageId);
+  if (!target) return;
+  
+  pages.forEach(p => p.classList.toggle('active', p.id === pageId));
+  
+  // Update nav button active states
+  document.querySelectorAll('nav .nav-link').forEach(b => {
+    b.classList.toggle('active', b.dataset.page === pageId);
+  });
+  
+  el('nav').classList.remove('open');
+  if (pushHash && window.location.hash.replace('#', '') !== pageId) {
+    window.location.hash = pageId;
+  }
+  window.scrollTo({top: 0, behavior: 'smooth'});
+  if (pageId === 'statistik') renderChart();
+}
+
+function handleHashChange() {
+  const hash = window.location.hash.replace('#', '');
+  if (hash) {
+    go(hash, false);
+  } else {
+    go('beranda', false);
+  }
+}
+window.addEventListener('hashchange', handleHashChange);
+
+function toggleMenu() {
+  el('nav').classList.toggle('open');
+}
+
+// Rendering Functions
+function renderHomeMass() {
+  const massData = [
+    {day: 'Sabtu Sore', time: '19.00 WIB', name: 'Misa Vigili Minggu', note: 'Bhs. Indonesia · Rutin'},
+    {day: 'Minggu Pagi', time: '07.30 WIB', name: 'Misa Kudus Mingguan', note: 'Perayaan Utama Umat'},
+    {day: 'Selasa & Kamis', time: '05.30 WIB', name: 'Misa Kudus Harian', note: 'Ibadat Pagi di Kapel'}
+  ];
+  el('home-mass').innerHTML = massData.map(m => `
+    <article class="card">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+        <div class="icon-box">✝</div>
+        <div>
+          <h3 style="margin:0">${m.name}</h3>
+          <span class="muted small">${m.note}</span>
+        </div>
+      </div>
+      <p style="font-size:17px;font-weight:bold;color:var(--brown);margin-bottom:4px">${m.day}</p>
+      <p class="muted small">Pukul ${m.time} · Kapel St. Yakobus</p>
+      <button class="btn secondary small-btn" style="margin-top:10px;width:100%" onclick="openForm('Intensi Misa')">+ Daftarkan Ujud Misa</button>
+    </article>
+  `).join('');
+}
+
+function programCard(p) {
+  return `
+    <article class="card card-action" onclick="showProgram(${p.id})" tabindex="0" onkeydown="if(event.key==='Enter')showProgram(${p.id})">
+      <div class="event-card">
+        <div class="date-badge">
+          <span class="day">${getDayNum(p.date)}</span>
+          <span class="month">${getMonthShort(p.date)}</span>
+        </div>
+        <div style="min-width:0;flex:1">
+          <h3 style="margin:0 0 6px">${escapeHTML(p.title)}</h3>
+          <span class="badge ${fieldClass(p.field)}">${escapeHTML(p.field)}</span>
+          <span class="badge ${statusClass(p.status)}">${p.status}</span>
+        </div>
+      </div>
+      <p class="muted small" style="margin-top:12px">◷ Pukul ${p.time} WIB · ${escapeHTML(p.place)}</p>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:10px;border-top:1px solid var(--line)">
+        <span class="small muted">${escapeHTML(p.area)}</span>
+        <span class="small" style="font-weight:bold;color:var(--gold-dark)">Lihat Detail &rarr;</span>
+      </div>
+    </article>
+  `;
+}
+
+function renderPrograms() {
+  const field = el('filter-field').value;
+  const status = el('filter-status').value;
+  const area = el('filter-area').value;
+  
+  const result = programs.filter(p => 
+    (field === 'Semua' || p.field === field) &&
+    (status === 'Semua' || p.status === status) &&
+    (area === 'Semua' || p.area === area)
+  );
+
+  el('program-count').textContent = `Menampilkan ${result.length} dari total ${programs.length} agenda pelayanan`;
+  el('program-list').innerHTML = result.length 
+    ? result.map(programCard).join('') 
+    : '<div class="empty">Tidak ada program yang sesuai dengan kriteria filter.</div>';
+  el('program-list').classList.remove('hidden');
+  el('program-detail').classList.add('hidden');
+}
+
+function showProgram(id) {
+  const p = programs.find(x => x.id === id);
+  if (!p) return;
+  el('program-list').classList.add('hidden');
+  el('program-detail').classList.remove('hidden');
+  
+  el('program-detail').innerHTML = `
+    <button class="backlink" onclick="renderPrograms()">&larr; Kembali ke Daftar Program</button>
+    <article class="card" style="margin-bottom:20px">
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px">
+        <span class="badge ${fieldClass(p.field)}">${escapeHTML(p.field)}</span>
+        <span class="badge ${statusClass(p.status)}">${p.status}</span>
+      </div>
+      <h2 style="margin:6px 0 14px">${escapeHTML(p.title)}</h2>
+      <p style="font-size:16px">${escapeHTML(p.desc)}</p>
+      <hr>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px">
+        <div><strong>Hari, Tanggal:</strong><br><span class="muted">${fmtDate(p.date)}</span></div>
+        <div><strong>Waktu:</strong><br><span class="muted">${p.time} WIB</span></div>
+        <div><strong>Tempat:</strong><br><span class="muted">${escapeHTML(p.place)}</span></div>
+        <div><strong>Lingkup:</strong><br><span class="muted">${escapeHTML(p.area)} · ${escapeHTML(p.env)}</span></div>
+        <div><strong>Penanggung Jawab:</strong><br><span class="muted">${escapeHTML(p.lead)}</span></div>
+      </div>
+      <div class="btn-row" style="margin-top:24px">
+        <button class="btn" onclick="openForm('Pendaftaran Kegiatan', '${escapeHTML(p.title)}')">Daftar / Konfirmasi Hadir</button>
+        <button class="btn secondary" onclick="downloadFlyer(${p.id})">Unduh Flyer Jadwal (.SVG)</button>
+      </div>
+    </article>
+  `;
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function downloadFlyer(id) {
+  const p = programs.find(x => x.id === id);
+  if (!p) return;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000">
+    <rect width="800" height="1000" rx="24" fill="#faf5e8"/>
+    <rect x="25" y="25" width="750" height="950" rx="18" fill="none" stroke="#b58a3b" stroke-width="4"/>
+    <circle cx="400" cy="210" r="90" fill="#ead8b3" stroke="#b58a3b" stroke-width="3"/>
+    <path d="M400 135v150M350 180h100" stroke="#795638" stroke-width="12" stroke-linecap="round"/>
+    <text x="400" y="375" font-family="Georgia,serif" font-size="26" font-weight="bold" fill="#493626" text-anchor="middle">KAPEL ST. YAKOBUS ZEBEDEUS PUDAK PAYUNG</text>
+    <text x="400" y="460" font-family="Georgia,serif" font-size="34" font-weight="bold" fill="#493626" text-anchor="middle">${escapeHTML(p.title)}</text>
+    <text x="400" y="540" font-family="Arial,sans-serif" font-size="24" fill="#72543c" text-anchor="middle">Tanggal: ${fmtDate(p.date)}</text>
+    <text x="400" y="585" font-family="Arial,sans-serif" font-size="24" fill="#72543c" text-anchor="middle">Waktu: ${p.time} WIB</text>
+    <text x="400" y="650" font-family="Arial,sans-serif" font-size="22" fill="#72543c" text-anchor="middle">Tempat: ${escapeHTML(p.place)}</text>
+    <text x="400" y="700" font-family="Arial,sans-serif" font-size="20" fill="#8c651f" text-anchor="middle">Penyelenggara: ${escapeHTML(p.lead)}</text>
+    <text x="400" y="880" font-family="Georgia,serif" font-size="22" font-style="italic" fill="#493626" text-anchor="middle">Berjalan Bersama dalam Iman dan Kasih</text>
+  </svg>`;
+  const blob = new Blob([svg], {type: 'image/svg+xml'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `Flyer-${p.title.replace(/\s+/g, '-')}.svg`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function newsCard(n) {
+  return `
+    <article class="card">
+      <div class="muted small" style="margin-bottom:6px">📅 Terbit: ${fmtDate(n.date)}</div>
+      <h3 style="margin:0 0 10px">${escapeHTML(n.title)}</h3>
+      <p>${escapeHTML(n.body)}</p>
+      <div style="border-top:1px solid var(--line);padding-top:10px;margin-top:12px" class="small muted">
+        Berlaku s/d: <strong>${fmtDate(n.valid)}</strong>
+      </div>
+    </article>
+  `;
+}
+
+function renderNews() {
+  el('home-news').innerHTML = news.slice(0, 3).map(newsCard).join('');
+  el('news-latest').innerHTML = news.slice(0, 3).map(newsCard).join('');
+}
+
+function newsTab(which, btn) {
+  document.querySelectorAll('#berita .tab').forEach(b => {
+    b.classList.remove('active');
+    b.setAttribute('aria-selected', 'false');
+  });
+  btn.classList.add('active');
+  btn.setAttribute('aria-selected', 'true');
+  el('news-latest').classList.toggle('hidden', which !== 'terbaru');
+  el('news-archive').classList.toggle('hidden', which !== 'arsip');
+  if (which === 'arsip') renderArchive();
+}
+
+function renderArchive() {
+  const y = el('news-year').value;
+  const m = el('news-month').value;
+  const list = news.filter(n => 
+    (y === 'Semua' || n.date.slice(0, 4) === y) &&
+    (m === 'Semua' || n.date.slice(5, 7) === m)
+  );
+  el('archive-list').innerHTML = list.length 
+    ? list.map(newsCard).join('') 
+    : '<div class="empty">Tidak ada warta untuk periode yang dipilih.</div>';
+}
+
+function renderGallery() {
+  el('gallery-list').innerHTML = albums.map(a => `
+    <article class="card">
+      <div class="gallery-card-thumb">
+        <svg viewBox="0 0 400 240" role="img" aria-label="${a.title}">
+          <rect width="100%" height="100%" fill="#efe5d0"/>
+          <circle cx="200" cy="120" r="48" fill="#dfd0b5"/>
+          <text x="200" y="132" font-size="42" text-anchor="middle" fill="#664d36">${a.icon}</text>
+          <text x="200" y="210" font-size="13" font-family="Arial" text-anchor="middle" fill="#806954">Dokumentasi Umat Kapel</text>
+        </svg>
+      </div>
+      <div style="margin-top:14px">
+        <span class="badge">${a.tag}</span>
+        <h3 style="margin:8px 0 6px">${a.title}</h3>
+        <p class="muted small">${a.desc}</p>
+      </div>
+    </article>
+  `).join('');
+}
+
+function renderAreas() {
+  el('area-list').innerHTML = ['Wilayah 7', 'Wilayah 8'].map(w => {
+    const list = envs.filter(e => e.area === w);
+    return `
+      <article class="card">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+          <div class="icon-box">♧</div>
+          <div>
+            <h2 style="margin:0">${w}</h2>
+            <span class="muted small">${list.length} Komunitas Lingkungan</span>
+          </div>
+        </div>
+        ${list.map(e => `
+          <div style="padding:10px 0;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <strong>${e.name}</strong><br>
+              <span class="muted small">Ketua: ${e.head}</span>
+            </div>
+            <button class="btn secondary small-btn" onclick="showEnvironment('${e.name}')">Info &rarr;</button>
+          </div>
+        `).join('')}
+      </article>
+    `;
+  }).join('');
+}
+
+function showEnvironment(name) {
+  const e = envs.find(x => x.name === name);
+  if (!e) return;
+  el('area-list').classList.add('hidden');
+  el('environment-detail').classList.remove('hidden');
+  el('environment-detail').innerHTML = `
+    <button class="backlink" onclick="el('environment-detail').classList.add('hidden');el('area-list').classList.remove('hidden')">&larr; Kembali ke Daftar Wilayah</button>
+    <article class="card">
+      <div class="eyebrow">${e.area}</div>
+      <h2>${e.name}</h2>
+      <p><strong>Ketua Lingkungan:</strong> ${e.head}</p>
+      <p><strong>Jadwal Pertemuan Rutin / Doa:</strong> Setiap hari ${e.day}, Pukul ${e.time} WIB</p>
+      <p><strong>Lokasi:</strong> Bergilir di rumah-rumah umat keluarga lingkungan.</p>
+      <hr>
+      <h3>Agenda Karya Lingkungan:</h3>
+      <ul>
+        <li>Pendalaman Kitab Suci, Renungan Adven & Prapaskah.</li>
+        <li>Kunjungan bagi warga yang sakit dan berbelarasa kedukaan.</li>
+        <li>Kolekte dana solidaritas warga dan aksi sosial kemasyarakatan.</li>
+      </ul>
+      <div class="btn-row" style="margin-top:18px">
+        <button class="btn" onclick="openForm('Kotak Saran', 'Untuk Pengurus ${e.name}')">Kirim Pesan ke Pengurus Lingkungan</button>
+      </div>
+    </article>
+  `;
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+// Chart.js & Statistik
+let chart = null;
+function isoDate(d) {
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
+
+function resetStatDates() {
+  const end = new Date();
+  const start = new Date(end);
+  start.setDate(start.getDate() - 29);
+  el('date-from').value = isoDate(start);
+  el('date-to').value = isoDate(end);
+  renderChart();
+}
+
+function renderChart() {
+  const fromValue = el('date-from').value;
+  const toValue = el('date-to').value;
+  const event = el('event-filter').value;
+  const canvas = el('attendance-chart');
+
+  if (!fromValue || !toValue) {
+    el('chart-title').textContent = 'Pilih rentang tanggal';
+    return;
+  }
+  const from = new Date(fromValue + 'T00:00:00');
+  const to = new Date(toValue + 'T00:00:00');
+  if (from > to) {
+    el('chart-title').textContent = 'Rentang tanggal tidak valid';
+    el('stat-total').textContent = '—';
+    el('stat-average').textContent = '—';
+    el('stat-last').textContent = '—';
+    if (chart) { chart.destroy(); chart = null; }
+    return;
+  }
+
+  const labels = [];
+  const values = [];
+  let cursor = new Date(from);
+  let week = 0;
+
+  while (cursor <= to) {
+    const weekStart = new Date(cursor);
+    const weekEnd = new Date(cursor);
+    weekEnd.setDate(weekEnd.getDate() + 6);
+    if (weekEnd > to) weekEnd.setTime(to.getTime());
+
+    labels.push(`${weekStart.toLocaleDateString('id-ID',{day:'2-digit',month:'short'})}–${weekEnd.toLocaleDateString('id-ID',{day:'2-digit',month:'short'})}`);
+    const days = Math.round((weekEnd - weekStart) / 86400000) + 1;
+    let base = 280 + ((week * 23 + 17) % 61);
+    if (event === 'Paskah') base += 120;
+    else if (event === 'Natal') base += 180;
+    else if (event === 'Pesta Nama') base -= 40;
+
+    values.push(Math.max(0, Math.round(base * days / 7)));
+    cursor.setDate(cursor.getDate() + 7);
+    week++;
+  }
+
+  el('chart-title').textContent = `Kehadiran Umat Mingguan (${from.toLocaleDateString('id-ID')} – ${to.toLocaleDateString('id-ID')})`;
+  const total = values.reduce((a, b) => a + b, 0);
+  el('stat-total').textContent = total.toLocaleString('id-ID');
+  el('stat-average').textContent = Math.round(total / (values.length || 1)).toLocaleString('id-ID');
+  el('stat-last').textContent = values[values.length - 1]?.toLocaleString('id-ID') || 0;
+
+  if (chart) { chart.destroy(); chart = null; }
+  if (typeof Chart === 'undefined') return;
+
+  chart = new Chart(canvas, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{
+        label: 'Estimasi Kehadiran Fisik',
+        data: values,
+        backgroundColor: '#d6b56f',
+        borderColor: '#9e7732',
+        borderWidth: 1,
+        borderRadius: 5
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => ` ${ctx.raw.toLocaleString('id-ID')} orang hadir`
+          }
+        }
+      },
+      scales: {
+        y: { beginAtZero: true, title: { display: true, text: 'Jumlah Umat' } },
+        x: { grid: { display: false } }
+      }
+    }
+  });
+}
+
+// Modal Formulir Interaktif & Intensi Misa
+function openForm(type, contextInfo = '') {
+  el('modal-title').textContent = type;
+  let html = '';
+
+  if (type === 'Intensi Misa') {
+    el('modal-description').textContent = 'Pendaftaran intensi/ujud doa Ekaristi (Syukur, Permohonan, atau Arwah).';
+    html = `
+      <div class="field">
+        <label>Pilihan Perayaan Misa</label>
+        <select required>
+          <option>Misa Vigili Sabtu (19.00 WIB)</option>
+          <option>Misa Mingguan (07.30 WIB)</option>
+          <option>Misa Jumat Pertama (19.00 WIB)</option>
+          <option>Misa Hari Arwah</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Tanggal Misa</label>
+        <input type="date" required value="${isoDate(new Date())}">
+      </div>
+      <div class="field">
+        <label>Jenis Ujud Misa</label>
+        <select required>
+          <option>Misa Arwah (Mendoakan yang telah meninggal)</option>
+          <option>Ucapan Syukur (Ulang tahun, hari jadi, kelulusan)</option>
+          <option>Permohonan Khusus (Kesehatan, pekerjaan, kedamaian)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Nama yang Didoakan / Ujud Intensi</label>
+        <textarea required placeholder="Contoh: Mengenang 100 hari berpulangnya Bpk. Yohanes..."></textarea>
+      </div>
+      <div class="field">
+        <label>Nama Pemohon & Lingkungan</label>
+        <input required placeholder="Nama Anda (Lingkungan 3)">
+      </div>
+      <div class="field">
+        <label>Nomor WhatsApp</label>
+        <input type="tel" required placeholder="08xxxxxxxxxx">
+      </div>
+    `;
+  } else if (type === 'Pendaftaran Kegiatan') {
+    el('modal-description').textContent = 'Pendaftaran pastoral dan kegiatan stasi.';
+    html = `
+      <div class="field">
+        <label>Nama Program / Kegiatan</label>
+        <input type="text" value="${contextInfo || 'Pendaftaran Komuni Pertama / Katekumen'}" required>
+      </div>
+      <div class="field">
+        <label>Nama Lengkap Peserta</label>
+        <input required placeholder="Nama Peserta">
+      </div>
+      <div class="field">
+        <label>Asal Lingkungan / Wilayah</label>
+        <select>
+          <option>Wilayah 7 - Lingkungan 1-6</option>
+          <option>Wilayah 8 - Lingkungan 7-11</option>
+          <option>Luar Wilayah</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Kontak WhatsApp / Telp</label>
+        <input type="tel" required placeholder="08xxxxxxxxxx">
+      </div>
+      <div class="field">
+        <label>Catatan Tambahan</label>
+        <textarea placeholder="Informasi tambahan jika ada..."></textarea>
+      </div>
+    `;
+  } else if (type === 'Pengajuan Bantuan Sosial') {
+    el('modal-description').textContent = 'Kanal rahasia tim belarasa untuk warga/umat yang membutuhkan bantuan.';
+    html = `
+      <div class="field">
+        <label>Jenis Bantuan</label>
+        <select>
+          <option>Bantuan Kebutuhan Pokok / Sembako</option>
+          <option>Bantuan Darurat Biaya Pengobatan / Kesehatan</option>
+          <option>Pendampingan Pendidikan Anak</option>
+          <option>Lainnya</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Nama Penerima Manfaat</label>
+        <input required placeholder="Nama warga / keluarga">
+      </div>
+      <div class="field">
+        <label>Alamat / Lingkungan</label>
+        <input required placeholder="Alamat rumah atau lingkungan">
+      </div>
+      <div class="field">
+        <label>Uraian Kebutuhan Singkat</label>
+        <textarea required placeholder="Jelaskan kondisi mendesak yang dihadapi..."></textarea>
+      </div>
+      <p class="small muted">Data permohonan dijaga kerahasiaannya oleh Ketua Stasi dan Tim Caritas/Sosial.</p>
+    `;
+  } else {
+    el('modal-description').textContent = 'Sampaikan aspirasi dan masukan Anda untuk pelayanan kapel.';
+    html = `
+      <div class="field">
+        <label><input type="checkbox" id="anon-check" style="width:auto"> Kirim sebagai Anonim</label>
+      </div>
+      <div class="field">
+        <label>Nama & Kontak (Opsional)</label>
+        <input placeholder="Nama / No. Kontak">
+      </div>
+      <div class="field">
+        <label>Topik / Bidang</label>
+        <select>
+          <option>Liturgi & Peribadatan</option>
+          <option>Fasilitas Fisik & Kebersihan Kapel</option>
+          <option>Kegiatan Kaum Muda & Paguyuban</option>
+          <option>Umum</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Isi Masukan / Saran</label>
+        <textarea required placeholder="Tuliskan saran Anda..."></textarea>
+      </div>
+    `;
+  }
+
+  el('form-fields').innerHTML = html;
+  el('form-modal').classList.add('open');
+}
+
+function closeForm() {
+  el('form-modal').classList.remove('open');
+}
+
+function handleFormSubmit(e) {
+  e.preventDefault();
+  alert('Terima kasih! Formulir permohonan berhasil dicatat (Simulasi UI Mockup).');
+  closeForm();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeForm();
+});
+
+// Inisialisasi awal
+el('year').textContent = new Date().getFullYear();
+renderHomeMass();
+renderNews();
+renderPrograms();
+renderGallery();
+renderAreas();
+resetStatDates();
+
+// Handle awal saat URL dibuka langsung dengan Hash
+handleHashChange();
+</script>
+</body>
+</html>
